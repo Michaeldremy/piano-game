@@ -1,0 +1,146 @@
+[
+  {
+    "note": "A",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/A - B - 1.png"
+  },
+  {
+    "note": "A",
+    "clef": "B",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/A - B - 2.png"
+  },
+  {
+    "note": "A",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/A - T - 1.png"
+  },
+  {
+    "note": "B",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/B - B - 1.png"
+  },
+  {
+    "note": "B",
+    "clef": "B",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/B - B - 2.png"
+  },
+  {
+    "note": "B",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/B - T - 1.png"
+  },
+  {
+    "note": "C",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/C - B - 1.png"
+  },
+  {
+    "note": "C",
+    "clef": "B",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/C - B - 2.png"
+  },
+  {
+    "note": "C",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/C - T - 1.png"
+  },
+  {
+    "note": "C",
+    "clef": "T",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/C - T - 2.png"
+  },
+  {
+    "note": "D",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/D - B - 1.png"
+  },
+  {
+    "note": "D",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/D - T - 1.png"
+  },
+  {
+    "note": "D",
+    "clef": "T",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/D - T - 2.png"
+  },
+  {
+    "note": "E",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/E - B - 1.png"
+  },
+  {
+    "note": "E",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/E - T - 1.png"
+  },
+  {
+    "note": "E",
+    "clef": "T",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/E - T - 2.png"
+  },
+  {
+    "note": "F",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/F - B - 1.png"
+  },
+  {
+    "note": "F",
+    "clef": "B",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/F - B - 2.png"
+  },
+  {
+    "note": "F",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/F - T - 1.png"
+  },
+  {
+    "note": "F",
+    "clef": "T",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/F - T - 2.png"
+  },
+  {
+    "note": "G",
+    "clef": "B",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/G - B - 1.png"
+  },
+  {
+    "note": "G",
+    "clef": "B",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/G - B - 2.png"
+  },
+  {
+    "note": "G",
+    "clef": "T",
+    "octave": 1,
+    "src": "/src/assets/piano/notes/G - T - 1.png"
+  },
+  {
+    "note": "G",
+    "clef": "T",
+    "octave": 2,
+    "src": "/src/assets/piano/notes/G - T - 2.png"
+  }
+]

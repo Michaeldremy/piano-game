@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(248, 248, 248);
+  color: #424242;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Homepage base route: / */
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.piano-game-intro h1 {
+  font-size: 64px;
+}
+
+.piano-game-intro p span {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.piano-game-intro p {
+  font-size: 20px;
+}
+
+.tutorial_nav {
+  background-color: #242424;
+  margin: 30px;
+  border-radius: 12px;
+  padding: 30px 80px;
+  text-decoration: none;
+}
+
+.tutorial_nav div {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1.5px;
+  font-size: 48px;
+  color: rgb(235, 235, 235);
+}
+
+.tutorial_nav:hover {
+  cursor: pointer;
+  outline: 3px solid rgb(0, 168, 219);
+}
+
+/* Learn Notes page base route: /learn-notes */
+
+.learn-notes-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh;
+  width: 100vw; */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.learn-notes-container h1 {
+  font-size: 48px;
+  margin-bottom: 0px;
+}
+
+.learn-notes-container p {
+  font-size: 22px;
+  width: 680px;
+}
+
+.quiz-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 425px;
+  margin-top: 15px;
+}
+
+.reset-button {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 14px 22px;
+  border-radius: 8px;
+  color: rgb(248, 248, 248);
+  background-color: rgb(29, 89, 255);
+}
+
+.reset-button:hover {
+  cursor: pointer;
+  background-color: rgb(15, 74, 236);
+}
+
+.quiz-buttons .view-results-button {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 14px 22px;
+  border-radius: 8px;
+  color: black;
+  background-color: rgb(3, 255, 137);
+}
+
+.quiz-buttons .view-results-button:hover {
+  cursor: pointer;
+  background-color: rgb(0, 238, 127);
+}
+
+.user-answered-notes {
+  display: flex;
+  font-size: 28px;
+  font-weight: 500;
+  gap: 5px;
+  margin: 0;
+}
+
+.user-answered-notes .note-is-correct {
+  color: green;
+  margin: 0;
+}
+
+.user-answered-notes .note-is-incorrect {
+  color: red;
+  margin: 0;
+}
+
+.notes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.note-image img {
+  height: 800px;
+  image-rendering: optimizeQuality;
+}
+
+.note-input-field-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  height: 415px;
+  width: 450px;
+  background-image: url('/piano-keys.jpg');
+  background-size: cover;
+  -webkit-box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
+}
+
+.note-input-field-container .score {
+  position: absolute;
+  margin: 0;
+  top: -42px;
+  right: 0px;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+.note-input-field-container h1 {
+  font-size: 60px;
+  padding: 0 60px;
+  margin-bottom: 35px;
+  margin-top: 0;
+  font-family: 'Pacifico', sans-serif;
+  letter-spacing: 2px;
+  color: rgb(71, 227, 255);
+  -webkit-text-stroke: 0.2px black;
+}
+
+.note-input-field-container .input-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-input-field-container .input-button-container button {
+  font-size: 22px;
+  text-transform: lowercase;
+  margin-left: 15px;
+  padding: 1px 16px;
+  border-radius: 6px;
+  font-family: 'Pacifico', sans-serif;
+  letter-spacing: 1px;
+  color: rgb(248, 248, 248);
+  background-color: rgb(29, 89, 255);
+}
+
+.note-input-field-container .input-button-container button:disabled {
+  color: rgb(248, 248, 248);
+  background-color: rgb(70, 70, 70);
+  cursor: not-allowed;
+}
+
+.note-input-field-container .input-button-container button:hover {
+  cursor: pointer;
+}
+
+.note-input-field-container .input-button-container input {
+  width: 75px;
+  height: 65px;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 8px;
+  background-color: rgb(248, 248, 248);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.note-input-field-container input:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.note-input-field-container .incorrect-answer {
+  font-size: 23px;
+  font-family: 'Pacifico', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: rgb(255, 19, 19);
+}
+
+.all-notes {
+  font-size: 18px;
+  width: 450px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Notes Modal */
+.react-responsive-modal-modal {
+  background: rgb(248, 248, 248) !important;
+}
+
+.notes-modal {
+  width: 100%;
+  height: 800px;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.modal-container .guessed-notes-container {
+  display: flex;
+}
+
+.modal-container .correct-answer p {
+  font-size: 34px;
+  color: rgb(0, 170, 0);
+  margin: 0;
+  padding: 0 8px;
+}
+
+.modal-container .incorrect-answer p {
+  font-size: 34px;
+  margin: 0;
+  color: rgb(199, 0, 0);
+  padding: 0 8px;
+}
+
+.modal-container .incorrect-answer p:hover {
+  cursor: pointer;
+  outline: 2px solid rgb(199, 0, 0);
+}
+
+.modal-container .correct-answer p:hover {
+  cursor: pointer;
+  outline: 2px solid rgb(0, 170, 0);
+}
+
+.modal-selected-note-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.modal-selected-note-image img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-selected-note-container .answers {
+  font-size: 15px;
+  border: 1px solid black;
+  padding: 35px 25px;
+  border-radius: 12px;
+}
+
+.modal-selected-note-container .answers .incorrect-answer {
+  color: rgb(199, 0, 0);
+  font-weight: 400;
+}
+
+.modal-selected-note-container .answers .correct-answer {
+  color: rgb(0, 170, 0);
+  font-weight: 400;
+}
+
+.modal-all-notes {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 16px;
+  width: 335px;
+}
