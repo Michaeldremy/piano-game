@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../App.css'
 
 const Home = () => {
@@ -17,9 +18,9 @@ const Home = () => {
         </p>
       </div>
       {typeOfPianoTutorials.map((tutorial, i) => (
-        <a href={tutorial.path} key={i} className='tutorial_nav'>
+        <Link to={tutorial.path} key={i} className='tutorial_nav'>
           <div>Learn {tutorial.name}</div>
-        </a>
+        </Link>
       ))}
     </div>
   )
