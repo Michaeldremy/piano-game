@@ -1,25 +1,40 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { GiMusicalNotes } from 'react-icons/gi'
+import { GiMusicalScore } from 'react-icons/gi'
 import '../App.css'
 
 const Home = () => {
   const typeOfPianoTutorials = [
-    { name: 'Notes', level: 'Beginner', path: 'learn-notes' },
-    { name: 'Chords', level: 'Beginner', path: 'learn-chords' },
+    {
+      name: 'Notes',
+      level: 'Beginner',
+      path: 'learn-notes',
+      icon: <GiMusicalNotes />,
+    },
+    {
+      name: 'Chords',
+      level: 'Beginner',
+      path: 'learn-chords',
+      icon: <GiMusicalScore />,
+    },
   ]
 
   return (
     <div className='home'>
       <div className='piano-game-intro'>
-        <h1>Piano Game</h1>
-        <p>
-          <span>Purpose:</span> This game is designed to help you learn piano
-          notes or chords.
-        </p>
+        <div className='piano-intro-heading'>
+          <img src='/piano-icon.png' alt='' />
+          <h1>Piano Game</h1>
+        </div>
+        <p>Designed to help you learn notes and chords.</p>
       </div>
       {typeOfPianoTutorials.map((tutorial, i) => (
-        <Link to={tutorial.path} key={i} className='tutorial_nav'>
-          <div>Learn {tutorial.name}</div>
+        <Link to={tutorial.path} key={i} className='tutorial-nav'>
+          <div className='flex-center'>
+            <p>{tutorial.name}</p>
+            <div className='tutorial-icon'>{tutorial.icon}</div>
+          </div>
         </Link>
       ))}
     </div>

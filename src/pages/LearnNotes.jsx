@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
+import { GiMusicalNotes } from 'react-icons/gi'
 import noteJSON from '../notes.json'
 
 const LearnNotes = () => {
@@ -11,12 +12,8 @@ const LearnNotes = () => {
   const [lastGuessCorrect, setLastGuessCorrect] = useState(true)
   const [open, setOpen] = useState(false)
   const [modalNoteSelected, setModalNoteSelected] = useState(null)
-
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
-
-  console.log('Score: ', score)
-  console.log(userGuessedNotes)
 
   // Function to select a random image
   const selectRandomImage = () => {
@@ -26,6 +23,7 @@ const LearnNotes = () => {
 
   // Load a random image when the component mounts
   useEffect(() => {
+    document.title = 'Piano Game | Notes'
     setCurrentImage(selectRandomImage())
   }, [])
 
@@ -83,10 +81,13 @@ const LearnNotes = () => {
 
   return (
     <div className='learn-notes-container'>
-      <h1>Learning Notes</h1>
+      <div className='flex-center'>
+        <GiMusicalNotes />
+        <h1>Learning Notes</h1>
+      </div>
       <p>
-        Simply name the note! Game is over once the score reaches 10. Discover
-        what notes you missed to learn quicker!
+        Simply name the note! Game ends when the score reaches 10. Discover what
+        notes you missed to learn quicker!
       </p>
       <div className='quiz-buttons'>
         {score === 10 && (

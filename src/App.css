@@ -4,8 +4,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
   background-color: rgb(248, 248, 248);
   color: #424242;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -23,35 +21,55 @@ body {
   text-align: center;
 }
 
-.piano-game-intro h1 {
-  font-size: 64px;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.piano-game-intro p span {
-  font-size: 22px;
-  font-weight: bold;
+.piano-intro-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.piano-game-intro img {
+  height: 55px;
+  margin-right: 10px;
+}
+
+.piano-game-intro h1 {
+  font-size: 48px;
 }
 
 .piano-game-intro p {
-  font-size: 20px;
+  font-size: 19px;
+  margin-top: 0px;
 }
 
-.tutorial_nav {
+.tutorial-nav {
   background-color: #242424;
-  margin: 30px;
+  margin: 20px;
   border-radius: 12px;
-  padding: 30px 80px;
+  padding: 0px 35px;
   text-decoration: none;
 }
 
-.tutorial_nav div {
+.tutorial-nav div {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 1.5px;
-  font-size: 48px;
+  font-size: 24px;
   color: rgb(235, 235, 235);
 }
 
-.tutorial_nav:hover {
+.tutorial-nav .tutorial-icon svg {
+  display: flex;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.tutorial-nav:hover {
   cursor: pointer;
   outline: 3px solid rgb(0, 168, 219);
 }
@@ -63,19 +81,25 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh;
-  width: 100vw; */
+  height: 100vh;
+  width: 100vw;
   margin: 0 auto;
   text-align: center;
 }
 
+.learn-notes-container .flex-center svg {
+  font-size: 55px;
+  margin-right: 12px;
+}
+
 .learn-notes-container h1 {
-  font-size: 48px;
+  font-size: 44px;
   margin-bottom: 0px;
+  margin-top: 0;
 }
 
 .learn-notes-container p {
-  font-size: 22px;
+  font-size: 18px;
   width: 680px;
 }
 
@@ -83,14 +107,15 @@ body {
   display: flex;
   justify-content: space-between;
   width: 425px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .reset-button {
-  font-size: 18px;
+  font-size: 15px;
+  height: 40px;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 14px 22px;
+  padding: 8px 20px;
   border-radius: 8px;
   color: rgb(248, 248, 248);
   background-color: rgb(29, 89, 255);
@@ -102,10 +127,11 @@ body {
 }
 
 .quiz-buttons .view-results-button {
-  font-size: 18px;
+  font-size: 15px;
+  height: 40px;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 14px 22px;
+  padding: 8px 20px;
   border-radius: 8px;
   color: black;
   background-color: rgb(3, 255, 137);
@@ -139,12 +165,10 @@ body {
   justify-content: center;
   align-items: center;
   gap: 60px;
-  margin-top: 20px;
 }
 
 .note-image img {
-  height: 800px;
-  image-rendering: optimizeQuality;
+  height: 630px;
 }
 
 .note-input-field-container {
@@ -155,7 +179,7 @@ body {
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  height: 415px;
+  height: 330px;
   width: 450px;
   background-image: url('/piano-keys.jpg');
   background-size: cover;
@@ -167,9 +191,9 @@ body {
 .note-input-field-container .score {
   position: absolute;
   margin: 0;
-  top: -42px;
+  top: -34px;
   right: 0px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   padding: 4px 12px;
   border-radius: 6px;
@@ -177,9 +201,9 @@ body {
 }
 
 .note-input-field-container h1 {
-  font-size: 60px;
+  font-size: 48px;
   padding: 0 60px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   margin-top: 0;
   font-family: 'Pacifico', sans-serif;
   letter-spacing: 2px;
@@ -194,7 +218,7 @@ body {
 }
 
 .note-input-field-container .input-button-container button {
-  font-size: 22px;
+  font-size: 20px;
   text-transform: lowercase;
   margin-left: 15px;
   padding: 1px 16px;
@@ -216,9 +240,9 @@ body {
 }
 
 .note-input-field-container .input-button-container input {
-  width: 75px;
-  height: 65px;
-  font-size: 40px;
+  width: 65px;
+  height: 55px;
+  font-size: 30px;
   font-weight: 500;
   text-align: center;
   border-radius: 8px;
@@ -231,7 +255,7 @@ body {
 }
 
 .note-input-field-container .incorrect-answer {
-  font-size: 23px;
+  font-size: 20px;
   font-family: 'Pacifico', sans-serif;
   letter-spacing: 1px;
   font-weight: 600;
@@ -239,7 +263,7 @@ body {
 }
 
 .all-notes {
-  font-size: 18px;
+  font-size: 15px;
   width: 450px;
   text-align: center;
   margin-top: 20px;
@@ -306,25 +330,348 @@ body {
 }
 
 .modal-selected-note-container .answers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   border: 1px solid black;
   padding: 35px 25px;
   border-radius: 12px;
+  height: 100px;
+  width: 300px;
 }
 
 .modal-selected-note-container .answers .incorrect-answer {
   color: rgb(199, 0, 0);
   font-weight: 400;
+  margin: 5px;
 }
 
 .modal-selected-note-container .answers .correct-answer {
   color: rgb(0, 170, 0);
   font-weight: 400;
+  margin: 5px;
 }
 
 .modal-all-notes {
   text-align: center;
   margin-top: 15px;
   font-size: 16px;
-  width: 335px;
+  width: 350px;
+}
+
+/* Learn Chords Page */
+
+.learn-chords-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.learn-chords-container svg {
+  font-size: 84px;
+}
+
+/* Media Queries */
+@media (max-width: 970px) {
+  .learn-notes-container .flex-center svg {
+    font-size: 38px;
+  }
+
+  .learn-notes-container {
+    margin-top: 65px;
+  }
+
+  .learn-notes-container h1 {
+    font-size: 28px;
+  }
+
+  .learn-notes-container p {
+    font-size: 16px;
+    width: auto;
+    padding: 0 40px;
+  }
+
+  .quiz-buttons {
+    margin-bottom: 50px;
+    width: 325px;
+  }
+
+  .reset-button {
+    font-size: 13px;
+    height: 35px;
+  }
+
+  .quiz-buttons .view-results-button {
+    font-size: 13px;
+    height: 35px;
+  }
+
+  .note-input-field-container {
+    height: 250px;
+    width: 350px;
+    margin-top: 30px;
+  }
+
+  .note-input-field-container h1 {
+    font-size: 32px;
+  }
+
+  .note-input-field-container .input-button-container input {
+    height: 40px;
+    width: 50px;
+    font-size: 25px;
+  }
+
+  .note-input-field-container .input-button-container button {
+    font-size: 16px;
+  }
+
+  .notes-container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .note-image img {
+    height: 400px;
+  }
+
+  .all-notes {
+    width: 350px;
+  }
+
+  .react-responsive-modal-modal {
+    width: 600px;
+    height: 775px;
+  }
+
+  .modal-all-notes {
+    margin-top: 10px;
+    font-size: 13px;
+    width: 300px;
+  }
+
+  .modal-container h1 {
+    font-size: 26px;
+    margin-top: 5px;
+  }
+
+  .modal-container .correct-answer p {
+    font-size: 24px;
+  }
+
+  .modal-container .incorrect-answer p {
+    font-size: 24px;
+  }
+
+  .modal-selected-note-container .answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px 0px;
+    margin-top: 25px;
+    height: 85px;
+  }
+
+  .modal-selected-note-container .answers .incorrect-answer {
+    margin: 4px;
+    font-size: 22px;
+  }
+
+  .modal-selected-note-container .answers .correct-answer {
+    margin: 4px;
+    font-size: 22px;
+  }
+
+  .modal-selected-note-container {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+
+  .modal-selected-note-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-selected-note-image img {
+    width: 75%;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .react-responsive-modal-modal {
+    width: 320px;
+    height: 775px;
+  }
+
+  .modal-all-notes {
+    font-size: 12px;
+    width: 300px;
+  }
+
+  .modal-selected-note-container .answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px 0px;
+    margin-top: 25px;
+    height: 85px;
+  }
+
+  .modal-selected-note-container .answers .incorrect-answer {
+    margin: 4px;
+  }
+
+  .modal-selected-note-container .answers .correct-answer {
+    margin: 4px;
+  }
+
+  .modal-container h1 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .modal-container .guessed-notes-container {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .modal-container .correct-answer p {
+    padding: 0 5px;
+  }
+
+  .modal-container .incorrect-answer p {
+    padding: 0 5px;
+  }
+
+  .modal-selected-note-container {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+
+  .modal-selected-note-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-selected-note-image img {
+    width: 75%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .piano-game-intro h1 {
+    font-size: 32px;
+  }
+
+  .piano-game-intro img {
+    height: 44px;
+  }
+
+  .tutorial-nav div {
+    font-size: 18px;
+  }
+
+  .tutorial-nav .tutorial-icon svg {
+    font-size: 25px;
+  }
+
+  .piano-game-intro p {
+    font-size: 16px;
+  }
+
+  .learn-notes-container .flex-center svg {
+    font-size: 32px;
+  }
+
+  .learn-notes-container {
+    margin-top: 50px;
+  }
+
+  .learn-notes-container h1 {
+    font-size: 24px;
+  }
+
+  .learn-notes-container p {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+
+  .quiz-buttons {
+    width: auto;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .note-input-field-container .score {
+    font-size: 13px;
+    top: -31px;
+  }
+
+  .note-input-field-container {
+    height: 200px;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .note-input-field-container h1 {
+    font-size: 28px;
+    padding: 0 30px;
+    margin-bottom: 10px;
+  }
+
+  .note-input-field-container .incorrect-answer {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .note-input-field-container .input-button-container input {
+    height: 35px;
+    width: 40px;
+    font-size: 21px;
+  }
+
+  .note-input-field-container .input-button-container button {
+    font-size: 13px;
+  }
+
+  .notes-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .note-image img {
+    height: 400px;
+  }
+
+  .all-notes {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
 }
