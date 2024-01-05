@@ -3,6 +3,8 @@ import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 import { GiMusicalNotes } from 'react-icons/gi'
 import noteJSON from '../notes.json'
+import PlusOneScore from '../components/animations/PlusOneScore'
+import coinScoreSound from '../sounds/coin_noise.mp3'
 
 const LearnNotes = () => {
   const [currentImage, setCurrentImage] = useState({})
@@ -12,6 +14,12 @@ const LearnNotes = () => {
   const [lastGuessCorrect, setLastGuessCorrect] = useState(true)
   const [open, setOpen] = useState(false)
   const [modalNoteSelected, setModalNoteSelected] = useState(null)
+  const [displayPlusOneScoreAnimation, setDisplayPlusOneScoreAnimation] =
+    useState(false)
+  const [
+    animationPositionClassOfPlusOneScore,
+    setAnimationPositionClassOfPlusOneScore,
+  ] = useState('')
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
 
@@ -19,6 +27,11 @@ const LearnNotes = () => {
   const selectRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * noteJSON.length)
     return noteJSON[randomIndex]
+  }
+
+  const playSound = () => {
+    let audio = new Audio(coinScoreSound).play()
+    audio.volume = 0.5
   }
 
   // Load a random image when the component mounts
@@ -33,6 +46,14 @@ const LearnNotes = () => {
     }
   }, [open, userGuessedNotes])
 
+  const getRandomAnimationPosition = () => {
+    const positions = [
+      'plusOneScoreAnimationContainerRight',
+      'plusOneScoreAnimationContainerLeft',
+    ]
+    return positions[Math.floor(Math.random() * positions.length)]
+  }
+
   // Function to handle user guess
   const handleGuess = () => {
     // Trim the input and check if it's not empty
@@ -43,8 +64,13 @@ const LearnNotes = () => {
     }
 
     if (userGuess.toUpperCase() === currentImage.note) {
-      // User guessed correctly
+      playSound()
       setScore(score + 1)
+      setDisplayPlusOneScoreAnimation(true)
+      setAnimationPositionClassOfPlusOneScore(getRandomAnimationPosition())
+      setTimeout(() => {
+        setDisplayPlusOneScoreAnimation(false)
+      }, 1300)
       setUserGuessedNotes(prev => [
         ...prev,
         { ...currentImage, guessedAnswer: userGuess, answeredCorrectly: true },
@@ -89,31 +115,38 @@ const LearnNotes = () => {
         Simply name the note! Game ends when the score reaches 10. Discover what
         notes you missed to learn quicker!
       </p>
-      <div className='quiz-buttons'>
-        {score === 10 && (
-          <>
-            <button className='reset-button' onClick={() => resetGame()}>
-              Reset Game
-            </button>
-            <button
-              className='view-results-button'
-              onClick={() => onOpenModal()}
-            >
-              View Results
-            </button>
-          </>
+
+      <div className='flex-center score-container'>
+        <h2 className='score'>Score: {score}</h2>
+        {displayPlusOneScoreAnimation && (
+          <PlusOneScore positionClass={animationPositionClassOfPlusOneScore} />
         )}
       </div>
-
       <div className='notes-container'>
+        {/* Lottie Animation */}
+
         <div className='note-image'>
           {currentImage.src && (
             <img src={currentImage.src} alt='Guess the note' />
           )}
         </div>
-        <div>
+        <div className='quiz-button-note-field-container'>
+          <div className='quiz-buttons'>
+            {score === 10 && (
+              <>
+                <button className='reset-button' onClick={() => resetGame()}>
+                  Reset Game
+                </button>
+                <button
+                  className='view-results-button'
+                  onClick={() => onOpenModal()}
+                >
+                  View Results
+                </button>
+              </>
+            )}
+          </div>
           <div className='note-input-field-container'>
-            <h2 className='score'>Score: {score}/10</h2>
             <h1>What note is this?</h1>
             <div className='input-button-container'>
               <input

@@ -1,0 +1,44 @@
+.congratulations-animation {
+  z-index: 100;
+  height: 50px;
+}
+
+.plusOneScoreAnimationContainer {
+  z-index: 100;
+  position: absolute;
+  padding-top: 50px;
+  right: 0;
+}
+
+.plusOneScoreAnimationContainerRight {
+  z-index: 100;
+  position: absolute;
+  padding-top: 65px;
+  padding-right: 50px;
+  right: 0;
+}
+
+.plusOneScoreAnimationContainerLeft {
+  z-index: 100;
+  position: absolute;
+  padding-top: 50px;
+  padding-right: 220px;
+  left: 0;
+}
+
+.plusOneScoreAnimation {
+  height: 200px;
+}
+
+@media (max-width: 970px) {
+  .plusOneScoreAnimationContainer {
+    padding-top: 25px;
+  }
+
+  .plusOneScoreAnimation {
+    height: 135px;
+  }
+}
+
+@media (max-width: 425px) {
+}

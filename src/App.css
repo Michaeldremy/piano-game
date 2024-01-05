@@ -27,6 +27,12 @@ body {
   align-items: center;
 }
 
+.score-container {
+  position: relative;
+  width: 500px;
+  padding: 10px 0;
+}
+
 .piano-intro-heading {
   display: flex;
   justify-content: center;
@@ -81,6 +87,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 100vh;
   width: 100vw;
   margin: 0 auto;
@@ -106,13 +113,16 @@ body {
 .quiz-buttons {
   display: flex;
   justify-content: space-between;
-  width: 425px;
-  margin-top: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .reset-button {
   font-size: 15px;
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
   text-transform: uppercase;
   font-weight: 600;
   padding: 8px 20px;
@@ -126,9 +136,12 @@ body {
   background-color: rgb(15, 74, 236);
 }
 
-.quiz-buttons .view-results-button {
+.view-results-button {
   font-size: 15px;
-  height: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
   font-weight: 600;
   padding: 8px 20px;
@@ -137,7 +150,7 @@ body {
   background-color: rgb(3, 255, 137);
 }
 
-.quiz-buttons .view-results-button:hover {
+.view-results-button:hover {
   cursor: pointer;
   background-color: rgb(0, 238, 127);
 }
@@ -164,11 +177,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
 }
 
 .note-image img {
   height: 630px;
+}
+
+.quiz-button-note-field-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .note-input-field-container {
@@ -188,11 +207,8 @@ body {
   box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
 }
 
-.note-input-field-container .score {
-  position: absolute;
+.score {
   margin: 0;
-  top: -34px;
-  right: 0px;
   font-size: 16px;
   font-weight: 500;
   padding: 4px 12px;
@@ -378,12 +394,17 @@ body {
 
 /* Media Queries */
 @media (max-width: 970px) {
-  .learn-notes-container .flex-center svg {
-    font-size: 38px;
+  .score-container {
+    width: 300px;
   }
 
   .learn-notes-container {
-    margin-top: 65px;
+    justify-content: start;
+    margin-top: 50px;
+  }
+
+  .learn-notes-container .flex-center svg {
+    font-size: 38px;
   }
 
   .learn-notes-container h1 {
@@ -397,24 +418,41 @@ body {
   }
 
   .quiz-buttons {
-    margin-bottom: 50px;
-    width: 325px;
+    width: 100%;
   }
 
   .reset-button {
-    font-size: 13px;
-    height: 35px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: rgb(248, 248, 248);
+    background-color: rgb(29, 89, 255);
   }
 
-  .quiz-buttons .view-results-button {
-    font-size: 13px;
-    height: 35px;
+  .view-results-button {
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: black;
+    background-color: rgb(3, 255, 137);
   }
 
   .note-input-field-container {
     height: 250px;
     width: 350px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
 
   .note-input-field-container h1 {
@@ -429,12 +467,6 @@ body {
 
   .note-input-field-container .input-button-container button {
     font-size: 16px;
-  }
-
-  .notes-container {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 10px;
   }
 
   .note-image img {
@@ -513,6 +545,52 @@ body {
     height: 775px;
   }
 
+  .quiz-button-note-field-container {
+    margin-top: 35px;
+  }
+
+  .quiz-buttons {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+
+  .reset-button {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: rgb(248, 248, 248);
+    background-color: rgb(29, 89, 255);
+  }
+
+  .view-results-button {
+    font-size: 14px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: black;
+    background-color: rgb(3, 255, 137);
+  }
+
+  .notes-container {
+    flex-direction: column-reverse;
+  }
+
+  .score-container {
+    width: 325px;
+  }
+
   .modal-all-notes {
     font-size: 12px;
     width: 300px;
@@ -574,6 +652,45 @@ body {
 }
 
 @media (max-width: 425px) {
+  .react-responsive-modal-modal {
+    width: 235px;
+    height: 775px;
+  }
+
+  .quiz-buttons {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+
+  .reset-button {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: rgb(248, 248, 248);
+    background-color: rgb(29, 89, 255);
+  }
+
+  .view-results-button {
+    font-size: 12px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: black;
+    background-color: rgb(3, 255, 137);
+  }
+
   .piano-game-intro h1 {
     font-size: 32px;
   }
@@ -614,12 +731,16 @@ body {
   .quiz-buttons {
     width: auto;
     gap: 10px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
-  .note-input-field-container .score {
+  .score {
     font-size: 13px;
-    top: -31px;
+  }
+
+  .score-container {
+    width: 300px;
   }
 
   .note-input-field-container {
@@ -673,5 +794,45 @@ body {
     margin-right: 20px;
     font-size: 13px;
     margin-bottom: 10px;
+  }
+
+  .modal-all-notes {
+    width: 250px;
+  }
+
+  .modal-selected-note-container .answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px 0px;
+    margin-top: 25px;
+    margin: 15px auto;
+    height: 60px;
+    width: 250px;
+  }
+
+  .modal-container .correct-answer p {
+    font-size: 18px;
+  }
+
+  .modal-container .incorrect-answer p {
+    font-size: 18px;
+  }
+
+  .modal-selected-note-container .answers .incorrect-answer {
+    margin: 4px;
+    font-size: 18px;
+  }
+
+  .modal-selected-note-container .answers .correct-answer {
+    margin: 4px;
+    font-size: 18px;
+  }
+
+  .modal-container h1 {
+    font-size: 18px;
+    text-align: center;
   }
 }
