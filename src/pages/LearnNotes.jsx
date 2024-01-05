@@ -5,7 +5,12 @@ import { GiMusicalNotes } from 'react-icons/gi'
 import noteJSON from '../notes.json'
 import PlusOneScore from '../components/animations/PlusOneScore'
 import coinScoreSound from '../sounds/coin_noise.mp3'
-import { shuffleArray } from '../utils/learnNotesUtility'
+import {
+  playFailSound,
+  playPerfectScoreSound,
+  playPlusOneScoreSound,
+  shuffleArray,
+} from '../utils/learnNotesUtility'
 import PerfectScore from '../components/animations/PerfectScore'
 
 const LearnNotes = () => {
@@ -16,15 +21,8 @@ const LearnNotes = () => {
   const [lastGuessCorrect, setLastGuessCorrect] = useState(true)
   const [open, setOpen] = useState(false)
   const [modalNoteSelected, setModalNoteSelected] = useState(null)
-  const [displayPlusOneScoreAnimation, setDisplayPlusOneScoreAnimation] =
-    useState(false)
-  const [
-    animationPositionClassOfPlusOneScore,
-    setAnimationPositionClassOfPlusOneScore,
-  ] = useState('')
   const [currentChoices, setCurrentChoices] = useState([])
-  const onOpenModal = () => setOpen(true)
-  const onCloseModal = () => setOpen(false)
+  const [plusOneAnimations, setPlusOneAnimations] = useState([])
 
   // Load a random image when the component mounts
   useEffect(() => {
@@ -42,14 +40,19 @@ const LearnNotes = () => {
     }
   }, [open, userGuessedNotes])
 
+  useEffect(() => {
+    if (score === 10 && perfectScore(userGuessedNotes)) {
+      playPerfectScoreSound()
+    }
+  }, [score, userGuessedNotes])
+
+  const onOpenModal = () => setOpen(true)
+  const onCloseModal = () => setOpen(false)
+
   // Function to select a random image
   const selectRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * noteJSON.length)
     return noteJSON[randomIndex]
-  }
-
-  const playSound = () => {
-    let audio = new Audio(coinScoreSound).play()
   }
 
   const getRandomAnimationPosition = () => {
@@ -86,9 +89,7 @@ const LearnNotes = () => {
 
   // Function to handle user guess
   const handleGuess = guessedNote => {
-    // Trim the input and check if it's not empty
     const usersGuess = guessedNote || userGuess
-
     const trimmedGuess = userGuess.trim()
     if (!trimmedGuess && !guessedNote) {
       alert('Please enter a guess.')
@@ -96,13 +97,25 @@ const LearnNotes = () => {
     }
 
     if (usersGuess.toUpperCase() === currentImage.note) {
-      playSound()
+      // Check if the next correct guess will result in a perfect score
+      if (
+        score === 9 &&
+        perfectScore([...userGuessedNotes, { answeredCorrectly: true }])
+      ) {
+        // If it's a perfect score, don't trigger the coin animation
+        playPerfectScoreSound() // Play perfect score sound if you have one
+      } else {
+        // Otherwise, play the coin animation as usual
+        playPlusOneScoreSound()
+        setPlusOneAnimations(prevAnimations => [
+          ...prevAnimations,
+          { id: Date.now(), position: getRandomAnimationPosition() },
+        ])
+      }
       setScore(score + 1)
-      setDisplayPlusOneScoreAnimation(true)
-      setAnimationPositionClassOfPlusOneScore(getRandomAnimationPosition())
-      setTimeout(() => {
-        setDisplayPlusOneScoreAnimation(false)
-      }, 1300)
+      if (plusOneAnimations.length >= 3) {
+        setPlusOneAnimations(prevAnimations => prevAnimations.slice(1))
+      }
       setUserGuessedNotes(prev => [
         ...prev,
         { ...currentImage, guessedAnswer: usersGuess, answeredCorrectly: true },
@@ -110,7 +123,8 @@ const LearnNotes = () => {
       setCurrentImage(selectRandomImage())
       setLastGuessCorrect(true)
     } else {
-      // User guessed incorrectly
+      playFailSound()
+      // Handle incorrect guess
       setUserGuessedNotes(prev => [
         ...prev,
         {
@@ -119,7 +133,7 @@ const LearnNotes = () => {
           answeredCorrectly: false,
         },
       ])
-      setLastGuessCorrect(false) // Indicate that the last guess was incorrect
+      setLastGuessCorrect(false)
     }
     setUserGuess('')
   }
@@ -141,10 +155,6 @@ const LearnNotes = () => {
     setUserGuess('')
   }
 
-  console.log('Perfect score: ', perfectScore(userGuessedNotes))
-
-  console.log(userGuessedNotes)
-
   return (
     <div className='learn-notes-container'>
       <div className='flex-center'>
@@ -161,13 +171,11 @@ const LearnNotes = () => {
           <h2 className='score'>Score: {score}</h2>
         )}
         {score === 10 && perfectScore(userGuessedNotes) && <PerfectScore />}
-        {displayPlusOneScoreAnimation && (
-          <PlusOneScore positionClass={animationPositionClassOfPlusOneScore} />
-        )}
+        {plusOneAnimations.map(animation => (
+          <PlusOneScore key={animation.id} positionClass={animation.position} />
+        ))}
       </div>
       <div className='notes-container'>
-        {/* Lottie Animation */}
-
         <div className='note-image'>
           {currentImage.src && (
             <img src={currentImage.src} alt='Guess the note' />
@@ -189,7 +197,13 @@ const LearnNotes = () => {
               </>
             )}
           </div>
-          <div className='note-input-field-container'>
+          <div
+            className={`${
+              !lastGuessCorrect
+                ? 'note-input-field-container incorrect-answer-border'
+                : 'note-input-field-container'
+            }`}
+          >
             <h1>What note is this?</h1>
             <div className='button-options-container'>
               {currentChoices.map((option, index) => (
@@ -217,9 +231,6 @@ const LearnNotes = () => {
                 ENTER
               </button>
             </div>
-            {!lastGuessCorrect && (
-              <p className='incorrect-answer'>Incorrect, try again!</p>
-            )}
           </div>
           <div className='all-notes'>
             Need help with learning the notes? View the{' '}

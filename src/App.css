@@ -214,6 +214,11 @@ body {
   margin-top: 15px;
 }
 
+.incorrect-answer-border {
+  outline: 5px solid red;
+  border: 0px;
+}
+
 .button-options-container button {
   font-size: 16px;
   font-weight: 600;
@@ -289,14 +294,6 @@ body {
 
 .note-input-field-container input:focus {
   border: 2px solid rgba(0, 0, 0, 0.3);
-}
-
-.note-input-field-container .incorrect-answer {
-  font-size: 20px;
-  font-family: 'Pacifico', sans-serif;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: rgb(255, 19, 19);
 }
 
 .all-notes {
@@ -784,12 +781,6 @@ body {
   .note-input-field-container h1 {
     font-size: 28px;
     padding: 0 30px;
-    margin-bottom: 10px;
-  }
-
-  .note-input-field-container .incorrect-answer {
-    font-size: 18px;
-    margin-top: 10px;
     margin-bottom: 10px;
   }
 

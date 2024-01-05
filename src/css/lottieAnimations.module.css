@@ -45,6 +45,10 @@
     padding-top: 25px;
   }
 
+  .plusOneScoreAnimationContainerRight {
+    padding-right: 0;
+  }
+
   .plusOneScoreAnimation {
     height: 135px;
   }
