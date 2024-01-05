@@ -5,6 +5,7 @@ import { GiMusicalNotes } from 'react-icons/gi'
 import noteJSON from '../notes.json'
 import PlusOneScore from '../components/animations/PlusOneScore'
 import coinScoreSound from '../sounds/coin_noise.mp3'
+import { shuffleArray } from '../utils/learnNotesUtility'
 
 const LearnNotes = () => {
   const [currentImage, setCurrentImage] = useState({})
@@ -69,7 +70,7 @@ const LearnNotes = () => {
       options.add(randomOption)
     }
 
-    return Array.from(options)
+    return shuffleArray(Array.from(options))
   }
 
   // Function to handle user guess
@@ -174,7 +175,11 @@ const LearnNotes = () => {
             <h1>What note is this?</h1>
             <div className='button-options-container'>
               {currentChoices.map((option, index) => (
-                <button key={index} onClick={() => handleGuess(option)}>
+                <button
+                  key={index}
+                  disabled={score === 10}
+                  onClick={() => handleGuess(option)}
+                >
                   {option}
                 </button>
               ))}
@@ -245,33 +250,29 @@ const LearnNotes = () => {
                 <img src={modalNoteSelected.src} alt='Selected note' />
               </div>
               <div>
-                <div className='answers'>
-                  {modalNoteSelected.guessedAnswer == modalNoteSelected.note ? (
-                    <h1 className='correct-answer'>
-                      Correct Answer: {modalNoteSelected.note}
-                    </h1>
-                  ) : (
-                    <>
+                {modalNoteSelected.guessedAnswer !== modalNoteSelected.note && (
+                  <>
+                    <div className='answers'>
                       <h1 className='incorrect-answer'>
                         Original Answer: {modalNoteSelected.guessedAnswer}
                       </h1>
                       <h1 className='correct-answer'>
                         Correct Answer: {modalNoteSelected.note}
                       </h1>
-                    </>
-                  )}
-                </div>
-                <div className='modal-all-notes'>
-                  Need help with learning the notes? View the{' '}
-                  <a
-                    href='/piano-notes-chart.gif'
-                    target='_blank'
-                    referrerPolicy='no-referrer'
-                  >
-                    piano chart
-                  </a>{' '}
-                  to help memorize the notes.
-                </div>
+                    </div>
+                    <div className='modal-all-notes'>
+                      Need help with learning the notes? View the{' '}
+                      <a
+                        href='/piano-notes-chart.gif'
+                        target='_blank'
+                        referrerPolicy='no-referrer'
+                      >
+                        piano chart
+                      </a>{' '}
+                      to help memorize the notes.
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}
