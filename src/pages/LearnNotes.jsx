@@ -20,8 +20,25 @@ const LearnNotes = () => {
     animationPositionClassOfPlusOneScore,
     setAnimationPositionClassOfPlusOneScore,
   ] = useState('')
+  const [currentChoices, setCurrentChoices] = useState([])
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
+
+  // Load a random image when the component mounts
+  useEffect(() => {
+    document.title = 'Piano Game | Notes'
+    setCurrentImage(selectRandomImage())
+  }, [])
+
+  useEffect(() => {
+    setCurrentChoices(generateAnswerOptions(currentImage.note))
+  }, [currentImage])
+
+  useEffect(() => {
+    if (open) {
+      setModalNoteSelected(userGuessedNotes[0])
+    }
+  }, [open, userGuessedNotes])
 
   // Function to select a random image
   const selectRandomImage = () => {
@@ -34,18 +51,6 @@ const LearnNotes = () => {
     audio.volume = 0.5
   }
 
-  // Load a random image when the component mounts
-  useEffect(() => {
-    document.title = 'Piano Game | Notes'
-    setCurrentImage(selectRandomImage())
-  }, [])
-
-  useEffect(() => {
-    if (open) {
-      setModalNoteSelected(userGuessedNotes[0])
-    }
-  }, [open, userGuessedNotes])
-
   const getRandomAnimationPosition = () => {
     const positions = [
       'plusOneScoreAnimationContainerRight',
@@ -54,16 +59,31 @@ const LearnNotes = () => {
     return positions[Math.floor(Math.random() * positions.length)]
   }
 
+  const generateAnswerOptions = correctNote => {
+    let options = new Set()
+    options.add(correctNote)
+
+    while (options.size < 4) {
+      const randomOption =
+        noteJSON[Math.floor(Math.random() * noteJSON.length)].note
+      options.add(randomOption)
+    }
+
+    return Array.from(options)
+  }
+
   // Function to handle user guess
-  const handleGuess = () => {
+  const handleGuess = guessedNote => {
     // Trim the input and check if it's not empty
+    const usersGuess = guessedNote || userGuess
+
     const trimmedGuess = userGuess.trim()
-    if (!trimmedGuess) {
+    if (!trimmedGuess && !guessedNote) {
       alert('Please enter a guess.')
       return
     }
 
-    if (userGuess.toUpperCase() === currentImage.note) {
+    if (usersGuess.toUpperCase() === currentImage.note) {
       playSound()
       setScore(score + 1)
       setDisplayPlusOneScoreAnimation(true)
@@ -73,7 +93,7 @@ const LearnNotes = () => {
       }, 1300)
       setUserGuessedNotes(prev => [
         ...prev,
-        { ...currentImage, guessedAnswer: userGuess, answeredCorrectly: true },
+        { ...currentImage, guessedAnswer: usersGuess, answeredCorrectly: true },
       ])
       setCurrentImage(selectRandomImage())
       setLastGuessCorrect(true)
@@ -81,7 +101,11 @@ const LearnNotes = () => {
       // User guessed incorrectly
       setUserGuessedNotes(prev => [
         ...prev,
-        { ...currentImage, guessedAnswer: userGuess, answeredCorrectly: false },
+        {
+          ...currentImage,
+          guessedAnswer: usersGuess,
+          answeredCorrectly: false,
+        },
       ])
       setLastGuessCorrect(false) // Indicate that the last guess was incorrect
     }
@@ -148,6 +172,13 @@ const LearnNotes = () => {
           </div>
           <div className='note-input-field-container'>
             <h1>What note is this?</h1>
+            <div className='button-options-container'>
+              {currentChoices.map((option, index) => (
+                <button key={index} onClick={() => handleGuess(option)}>
+                  {option}
+                </button>
+              ))}
+            </div>
             <div className='input-button-container'>
               <input
                 type='text'
