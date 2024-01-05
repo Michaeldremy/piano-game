@@ -118,6 +118,7 @@ body {
 }
 
 .reset-button {
+  z-index: 100;
   font-size: 15px;
   display: flex;
   justify-content: center;
@@ -177,6 +178,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .note-image img {
@@ -417,6 +419,10 @@ body {
     width: 300px;
   }
 
+  .notes-container {
+    margin-top: 85px;
+  }
+
   .learn-notes-container {
     justify-content: start;
     margin-top: 50px;
@@ -604,6 +610,7 @@ body {
 
   .notes-container {
     flex-direction: column-reverse;
+    margin-top: 50px;
   }
 
   .score-container {

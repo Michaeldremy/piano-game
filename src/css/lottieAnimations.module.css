@@ -3,6 +3,16 @@
   height: 50px;
 }
 
+.perfectScoreAnimationContainer {
+  z-index: 0;
+  position: absolute;
+  padding-top: 85px;
+}
+
+.perfectScoreAnimation {
+  height: 200px;
+}
+
 .plusOneScoreAnimationContainer {
   z-index: 100;
   position: absolute;
@@ -37,6 +47,10 @@
 
   .plusOneScoreAnimation {
     height: 135px;
+  }
+
+  .perfectScoreAnimation {
+    height: 150px;
   }
 }
 

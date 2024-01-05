@@ -6,6 +6,7 @@ import noteJSON from '../notes.json'
 import PlusOneScore from '../components/animations/PlusOneScore'
 import coinScoreSound from '../sounds/coin_noise.mp3'
 import { shuffleArray } from '../utils/learnNotesUtility'
+import PerfectScore from '../components/animations/PerfectScore'
 
 const LearnNotes = () => {
   const [currentImage, setCurrentImage] = useState({})
@@ -49,7 +50,6 @@ const LearnNotes = () => {
 
   const playSound = () => {
     let audio = new Audio(coinScoreSound).play()
-    audio.volume = 0.5
   }
 
   const getRandomAnimationPosition = () => {
@@ -71,6 +71,17 @@ const LearnNotes = () => {
     }
 
     return shuffleArray(Array.from(options))
+  }
+
+  const perfectScore = notesGuessedByUser => {
+    // Check if the array is empty
+    if (notesGuessedByUser.length === 0) {
+      return false // Or true, based on your game logic
+    }
+
+    if (notesGuessedByUser.length === 10) {
+      return notesGuessedByUser.every(note => note.answeredCorrectly === true)
+    }
   }
 
   // Function to handle user guess
@@ -130,6 +141,10 @@ const LearnNotes = () => {
     setUserGuess('')
   }
 
+  console.log('Perfect score: ', perfectScore(userGuessedNotes))
+
+  console.log(userGuessedNotes)
+
   return (
     <div className='learn-notes-container'>
       <div className='flex-center'>
@@ -142,7 +157,10 @@ const LearnNotes = () => {
       </p>
 
       <div className='flex-center score-container'>
-        <h2 className='score'>Score: {score}</h2>
+        {!perfectScore(userGuessedNotes) && (
+          <h2 className='score'>Score: {score}</h2>
+        )}
+        {score === 10 && perfectScore(userGuessedNotes) && <PerfectScore />}
         {displayPlusOneScoreAnimation && (
           <PlusOneScore positionClass={animationPositionClassOfPlusOneScore} />
         )}

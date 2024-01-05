@@ -9,6 +9,7 @@ const Congratulations = () => {
       <Lottie
         animationData={CongratulationsAnimation}
         className='congratulations-animation'
+        loop={false}
       />
     </div>
   )
