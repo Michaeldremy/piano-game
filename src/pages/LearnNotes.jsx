@@ -194,7 +194,13 @@ const LearnNotes = () => {
   }
 
   return (
-    <div className='learn-notes-container'>
+    <div
+      className={
+        selectedGameVersion
+          ? 'learn-notes-container learn-notes-container-margin-top'
+          : 'learn-notes-container'
+      }
+    >
       <div className='flex-center'>
         <GiMusicalNotes className='header-icon' />
         <h1 className='header-title'>Learning Notes</h1>

@@ -781,9 +781,12 @@ body {
     font-size: 13px;
   }
 
+  .learn-notes-container-margin-top {
+    margin-top: 35px;
+  }
+
   .learn-notes-container {
     justify-content: center;
-    margin-top: 35px;
   }
 
   .note-input-field-container {
@@ -915,7 +918,7 @@ body {
     margin-top: 15px;
   }
 
-  .learn-notes-container {
+  .learn-notes-container-margin-top {
     margin-top: 150px;
   }
 
@@ -1050,8 +1053,8 @@ body {
     font-size: 34px;
   }
 
-  .learn-notes-container {
-    margin-top: 80px;
+  .learn-notes-container-margin-top {
+    margin-top: 65px;
   }
 
   .animations-container {
