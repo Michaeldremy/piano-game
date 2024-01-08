@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Score to 10",
+    "description": "Simply name the note! Game ends when the score reaches 10. Discover what notes you missed to learn quicker!",
+    "level": "Beginner"
+  },
+  {
+    "name": "1 Minute timer",
+    "description": "The game ends when the timer reaches 1 minute. Score as many points as you can!",
+    "level": "Beginner"
+  }
+]

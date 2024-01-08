@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import 'react-responsive-modal/styles.css'
-import { Modal } from 'react-responsive-modal'
 import { GiMusicalNotes } from 'react-icons/gi'
 import noteJSON from '../notes.json'
-import PlusOneScore from '../components/animations/PlusOneScore'
-import coinScoreSound from '../sounds/coin_noise.mp3'
+import { PiTimerBold } from 'react-icons/pi'
+import { VscDebugRestart } from 'react-icons/vsc'
 import {
   playFailSound,
-  playPerfectScoreSound,
   playPlusOneScoreSound,
   shuffleArray,
 } from '../utils/learnNotesUtility'
-import PerfectScore from '../components/animations/PerfectScore'
+import ScoreToTenResultsModal from '../components/Modals/ScoreToTenResultsModal'
+import gameVersions from '../gameVersions.json'
+import OneMinuteTimerModal from '../components/Modals/OneMinuteTimerModal'
 
 const LearnNotes = () => {
   const [currentImage, setCurrentImage] = useState({})
@@ -20,9 +20,17 @@ const LearnNotes = () => {
   const [userGuessedNotes, setUserGuessedNotes] = useState([])
   const [lastGuessCorrect, setLastGuessCorrect] = useState(true)
   const [open, setOpen] = useState(false)
+  const [openOneMinuteModal, setOpenOneMinuteModal] = useState(false)
   const [modalNoteSelected, setModalNoteSelected] = useState(null)
   const [currentChoices, setCurrentChoices] = useState([])
   const [plusOneAnimations, setPlusOneAnimations] = useState([])
+  const [selectedGameVersion, setSelectedGameVersion] = useState()
+  const [remainingTime, setRemainingTime] = useState(60)
+  const [timerActive, setTimerActive] = useState(false)
+  const [animationCounter, setAnimationCounter] = useState(0)
+
+  const SCORE_TO_TEN = selectedGameVersion?.name == 'Score to 10'
+  const ONE_MINUTE_TIMER = selectedGameVersion?.name === '1 Minute timer'
 
   // Load a random image when the component mounts
   useEffect(() => {
@@ -41,26 +49,38 @@ const LearnNotes = () => {
   }, [open, userGuessedNotes])
 
   useEffect(() => {
-    if (score === 10 && perfectScore(userGuessedNotes)) {
-      playPerfectScoreSound()
+    let interval
+    if (timerActive && ONE_MINUTE_TIMER) {
+      interval = setInterval(() => {
+        setRemainingTime(time => {
+          if (time === 1) {
+            clearInterval(interval)
+            // End the game here
+            onEndOfTimerGame()
+            return 0
+          }
+          return time - 1
+        })
+      }, 1000)
     }
-  }, [score, userGuessedNotes])
+
+    return () => clearInterval(interval)
+  }, [timerActive, selectedGameVersion])
 
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
+  const onOpenOneMinuteTimerModal = () => setOpenOneMinuteModal(true)
+  const onCloseOneMinuteTimerModal = () => setOpenOneMinuteModal(false)
+
+  const gameVersionChange = selectedGameVersion => {
+    setSelectedGameVersion(selectedGameVersion)
+    resetGame()
+  }
 
   // Function to select a random image
   const selectRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * noteJSON.length)
     return noteJSON[randomIndex]
-  }
-
-  const getRandomAnimationPosition = () => {
-    const positions = [
-      'plusOneScoreAnimationContainerRight',
-      'plusOneScoreAnimationContainerLeft',
-    ]
-    return positions[Math.floor(Math.random() * positions.length)]
   }
 
   const generateAnswerOptions = correctNote => {
@@ -76,17 +96,6 @@ const LearnNotes = () => {
     return shuffleArray(Array.from(options))
   }
 
-  const perfectScore = notesGuessedByUser => {
-    // Check if the array is empty
-    if (notesGuessedByUser.length === 0) {
-      return false // Or true, based on your game logic
-    }
-
-    if (notesGuessedByUser.length === 10) {
-      return notesGuessedByUser.every(note => note.answeredCorrectly === true)
-    }
-  }
-
   // Function to handle user guess
   const handleGuess = guessedNote => {
     const usersGuess = guessedNote || userGuess
@@ -97,22 +106,11 @@ const LearnNotes = () => {
     }
 
     if (usersGuess.toUpperCase() === currentImage.note) {
-      // Check if the next correct guess will result in a perfect score
-      if (
-        score === 9 &&
-        perfectScore([...userGuessedNotes, { answeredCorrectly: true }])
-      ) {
-        // If it's a perfect score, don't trigger the coin animation
-        playPerfectScoreSound() // Play perfect score sound if you have one
-      } else {
-        // Otherwise, play the coin animation as usual
-        playPlusOneScoreSound()
-        setPlusOneAnimations(prevAnimations => [
-          ...prevAnimations,
-          { id: Date.now(), position: getRandomAnimationPosition() },
-        ])
-      }
+      // Play the correct answer sound
+      playPlusOneScoreSound()
       setScore(score + 1)
+      triggerPlusOneAnimation()
+      // Add animation for a correct guess
       if (plusOneAnimations.length >= 3) {
         setPlusOneAnimations(prevAnimations => prevAnimations.slice(1))
       }
@@ -120,11 +118,12 @@ const LearnNotes = () => {
         ...prev,
         { ...currentImage, guessedAnswer: usersGuess, answeredCorrectly: true },
       ])
+
       setCurrentImage(selectRandomImage())
       setLastGuessCorrect(true)
     } else {
-      playFailSound()
       // Handle incorrect guess
+      playFailSound()
       setUserGuessedNotes(prev => [
         ...prev,
         {
@@ -138,11 +137,47 @@ const LearnNotes = () => {
     setUserGuess('')
   }
 
+  const triggerPlusOneAnimation = () => {
+    const randomX = Math.random() * 100 // Random position within the container
+    const randomY = Math.random() * 100 // Random position within the container
+    const backgroundColors = [
+      'rgb(255, 246, 125)',
+      'rgba(71, 227, 255, 0.89)',
+      'rgb(114, 255, 114)',
+      'rgb(239, 114, 255)',
+      'rgb(255, 189, 114)',
+    ]
+
+    const newAnimation = {
+      id: `${Date.now()}-${animationCounter}`,
+      style: {
+        left: `${randomX}%`,
+        top: `${randomY}%`,
+        opacity: 1,
+        transform: 'translateY(0px)',
+        backgroundColor:
+          backgroundColors[Math.floor(Math.random() * backgroundColors.length)],
+      },
+    }
+
+    setAnimationCounter(prevCount => prevCount + 1)
+    setPlusOneAnimations(currentAnimations => [
+      ...currentAnimations,
+      newAnimation,
+    ])
+  }
+
   // Function to handle key press on input field
   const handleKeyPress = e => {
     if (e.charCode === 13) {
       handleGuess()
     }
+  }
+
+  const onEndOfTimerGame = () => {
+    setUserGuess('')
+    onOpenOneMinuteTimerModal()
+    setTimerActive(false)
   }
 
   const resetGame = () => {
@@ -152,164 +187,189 @@ const LearnNotes = () => {
     setScore(0)
     setModalNoteSelected(null)
     onCloseModal()
+    onCloseOneMinuteTimerModal()
+    setRemainingTime(60)
+    setTimerActive(false)
     setUserGuess('')
   }
 
   return (
     <div className='learn-notes-container'>
       <div className='flex-center'>
-        <GiMusicalNotes />
-        <h1>Learning Notes</h1>
+        <GiMusicalNotes className='header-icon' />
+        <h1 className='header-title'>Learning Notes</h1>
       </div>
-      <p>
-        Simply name the note! Game ends when the score reaches 10. Discover what
-        notes you missed to learn quicker!
-      </p>
 
-      <div className='flex-center score-container'>
-        {!perfectScore(userGuessedNotes) && (
-          <h2 className='score'>Score: {score}</h2>
-        )}
-        {score === 10 && perfectScore(userGuessedNotes) && <PerfectScore />}
-        {plusOneAnimations.map(animation => (
-          <PlusOneScore key={animation.id} positionClass={animation.position} />
+      <div className='game-version-container'>
+        {gameVersions.map((version, i) => (
+          <div key={i} className='flex-center'>
+            <button
+              className={`${
+                version?.name === selectedGameVersion?.name
+                  ? 'game-version-selected'
+                  : 'game-versions-button'
+              }`}
+              onClick={() => gameVersionChange(version)}
+            >
+              {version?.name}
+            </button>
+          </div>
         ))}
       </div>
-      <div className='notes-container'>
-        <div className='note-image'>
-          {currentImage.src && (
-            <img src={currentImage.src} alt='Guess the note' />
+
+      <div
+        className='flex-center score-container'
+        style={!selectedGameVersion ? { display: 'none' } : {}}
+      >
+        <div className='flex-center'>
+          {ONE_MINUTE_TIMER && (
+            <h2 className='time-remaining font-open-sans'>
+              {remainingTime}
+              <span style={{ textTransform: 'lowercase' }}>s</span>
+            </h2>
           )}
+          <h2 className='score font-open-sans'>Score: {score}</h2>
         </div>
-        <div className='quiz-button-note-field-container'>
-          <div className='quiz-buttons'>
-            {score === 10 && (
-              <>
-                <button className='reset-button' onClick={() => resetGame()}>
-                  Reset Game
-                </button>
+      </div>
+      {/* Animations */}
+      <div className='animations-container'>
+        {plusOneAnimations.map(animation => (
+          <div
+            key={animation.id}
+            className='animation-plus-one'
+            style={animation.style}
+          >
+            +1
+          </div>
+        ))}
+      </div>
+      {ONE_MINUTE_TIMER && (
+        <div className='one-minute-timer-options-container'>
+          <div className='one-minute-timer-options flex-center'>
+            <div
+              className='restart-timer flex-center'
+              onClick={() => {
+                setRemainingTime(60)
+                setScore(0)
+                setTimerActive(false)
+              }}
+            >
+              <VscDebugRestart />
+              <p>RESTART</p>
+            </div>
+            <div
+              className='start-timer flex-center'
+              onClick={() => {
+                setRemainingTime(60)
+                setScore(0)
+                setTimerActive(true)
+              }}
+            >
+              <PiTimerBold />
+              <p>START</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {selectedGameVersion && (
+        <div className='notes-container'>
+          <div className='note-image'>
+            {currentImage.src && (
+              <img src={currentImage.src} alt='Guess the note' />
+            )}
+          </div>
+          <div className='quiz-button-note-field-container'>
+            <div className='quiz-buttons'>
+              {score === 10 && SCORE_TO_TEN && (
+                <>
+                  <button className='reset-button' onClick={() => resetGame()}>
+                    Reset Game
+                  </button>
+                  <button
+                    className='view-results-button'
+                    onClick={() => onOpenModal()}
+                  >
+                    View Results
+                  </button>
+                </>
+              )}
+              {ONE_MINUTE_TIMER && remainingTime == 0 && (
                 <button
                   className='view-results-button'
-                  onClick={() => onOpenModal()}
+                  onClick={() => onOpenOneMinuteTimerModal()}
                 >
                   View Results
                 </button>
-              </>
-            )}
-          </div>
-          <div
-            className={`${
-              !lastGuessCorrect
-                ? 'note-input-field-container incorrect-answer-border'
-                : 'note-input-field-container'
-            }`}
-          >
-            <h1>What note is this?</h1>
-            <div className='button-options-container'>
-              {currentChoices.map((option, index) => (
-                <button
-                  key={index}
-                  disabled={score === 10}
-                  onClick={() => handleGuess(option)}
-                >
-                  {option}
-                </button>
-              ))}
+              )}
             </div>
-            <div className='input-button-container'>
-              <input
-                type='text'
-                value={userGuess}
-                onChange={e => setUserGuess(e?.target?.value?.toUpperCase())}
-                onKeyPress={handleKeyPress}
-                disabled={score === 10}
-              />
-              <button
-                disabled={!userGuess.trim()}
-                onClick={() => handleGuess()}
-              >
-                ENTER
-              </button>
-            </div>
-          </div>
-          <div className='all-notes'>
-            Need help with learning the notes? View the{' '}
-            <a
-              href='/piano-notes-chart.gif'
-              target='_blank'
-              referrerPolicy='no-referrer'
+            <div
+              className={`${
+                !lastGuessCorrect
+                  ? 'note-input-field-container incorrect-answer-border'
+                  : 'note-input-field-container'
+              }`}
             >
-              piano chart
-            </a>{' '}
-            to help memorize the notes.
-          </div>
-        </div>
-      </div>
-      <Modal
-        classNames={{
-          modal: 'notes-modal',
-        }}
-        open={open}
-        onClose={() => {
-          onCloseModal()
-          setModalNoteSelected(null) // Reset the selected note image on modal close
-        }}
-        center
-      >
-        <div className='modal-container'>
-          <h1>Results from learning notes</h1>
-          <div className='guessed-notes-container'>
-            {userGuessedNotes.map((note, i) => (
-              <div
-                key={i}
-                className={
-                  note.answeredCorrectly ? 'correct-answer' : 'incorrect-answer'
-                }
-                onClick={() => {
-                  setModalNoteSelected(note)
-                }}
-              >
-                <p>{note.note}</p>
+              <h1 className='what-note-header'>
+                {SCORE_TO_TEN ? 'What note is this?' : 'It is timed, go!'}
+              </h1>
+              <div className='button-options-container'>
+                {currentChoices.map((option, index) => (
+                  <button
+                    key={index}
+                    disabled={score === 10}
+                    onClick={() => handleGuess(option)}
+                  >
+                    {option}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-          {modalNoteSelected && (
-            <div className='modal-selected-note-container'>
-              <div className='modal-selected-note-image'>
-                <img src={modalNoteSelected.src} alt='Selected note' />
-              </div>
-              <div>
-                {modalNoteSelected.guessedAnswer !== modalNoteSelected.note && (
-                  <>
-                    <div className='answers'>
-                      <h1 className='incorrect-answer'>
-                        Original Answer: {modalNoteSelected.guessedAnswer}
-                      </h1>
-                      <h1 className='correct-answer'>
-                        Correct Answer: {modalNoteSelected.note}
-                      </h1>
-                    </div>
-                    <div className='modal-all-notes'>
-                      Need help with learning the notes? View the{' '}
-                      <a
-                        href='/piano-notes-chart.gif'
-                        target='_blank'
-                        referrerPolicy='no-referrer'
-                      >
-                        piano chart
-                      </a>{' '}
-                      to help memorize the notes.
-                    </div>
-                  </>
-                )}
+              <div className='input-button-container'>
+                <input
+                  type='text'
+                  value={userGuess}
+                  onChange={e => setUserGuess(e?.target?.value?.toUpperCase())}
+                  onKeyPress={handleKeyPress}
+                  disabled={
+                    (SCORE_TO_TEN && score === 10) || remainingTime === 0
+                  }
+                />
+                <button
+                  disabled={!userGuess.trim()}
+                  onClick={() => handleGuess()}
+                >
+                  ENTER
+                </button>
               </div>
             </div>
-          )}
-          <button className='reset-button' onClick={() => resetGame()}>
-            Play again?
-          </button>
+            <div className='all-notes'>
+              Need help with learning the notes? View the{' '}
+              <a
+                href='/piano-notes-chart.gif'
+                target='_blank'
+                referrerPolicy='no-referrer'
+              >
+                piano chart
+              </a>{' '}
+              to help memorize the notes.
+            </div>
+          </div>
         </div>
-      </Modal>
+      )}
+      <OneMinuteTimerModal
+        openOneMinuteModal={openOneMinuteModal}
+        setOpenOneMinuteModal={setOpenOneMinuteModal}
+        onCloseOneMinuteTimerModal={onCloseOneMinuteTimerModal}
+        userGuessedNotes={userGuessedNotes}
+        resetGame={resetGame}
+      />
+      <ScoreToTenResultsModal
+        open={open}
+        setModalNoteSelected={setModalNoteSelected}
+        onCloseModal={onCloseModal}
+        userGuessedNotes={userGuessedNotes}
+        modalNoteSelected={modalNoteSelected}
+        resetGame={resetGame}
+      />
     </div>
   )
 }

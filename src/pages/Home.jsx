@@ -30,10 +30,14 @@ const Home = () => {
         <p>Designed to help you learn notes and chords.</p>
       </div>
       {typeOfPianoTutorials.map((tutorial, i) => (
-        <Link to={tutorial.path} key={i} className='tutorial-nav'>
+        <Link
+          to={tutorial.path}
+          key={i}
+          className='game-button-global tutorial-nav'
+        >
           <div className='flex-center'>
-            <p>{tutorial.name}</p>
             <div className='tutorial-icon'>{tutorial.icon}</div>
+            <p className='tutorial-name'>{tutorial.name}</p>
           </div>
         </Link>
       ))}

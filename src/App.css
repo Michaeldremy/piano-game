@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
 
 html,
 body {
@@ -21,16 +22,44 @@ body {
   text-align: center;
 }
 
+.font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.game-button-global {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 15px;
+}
+
+.game-button-global:hover {
+  cursor: pointer;
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 0px 0px;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.score-container {
-  position: relative;
-  width: 500px;
-  padding: 10px 0;
 }
 
 .piano-intro-heading {
@@ -54,30 +83,24 @@ body {
 }
 
 .tutorial-nav {
-  background-color: #242424;
-  margin: 20px;
-  border-radius: 12px;
-  padding: 0px 35px;
-  text-decoration: none;
+  margin: 12px 0;
+  color: #000;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.tutorial-nav div {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  letter-spacing: 1.5px;
-  font-size: 24px;
-  color: rgb(235, 235, 235);
+.tutorial-nav:hover {
+  background-color: rgba(129, 236, 255, 0.89);
+}
+
+.tutorial-name {
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 28px;
 }
 
 .tutorial-nav .tutorial-icon svg {
   display: flex;
-  font-size: 30px;
-  margin-left: 10px;
-  margin-top: 3px;
-}
-
-.tutorial-nav:hover {
-  cursor: pointer;
-  outline: 3px solid rgb(0, 168, 219);
+  font-size: 38px;
 }
 
 /* Learn Notes page base route: /learn-notes */
@@ -94,20 +117,78 @@ body {
   text-align: center;
 }
 
-.learn-notes-container .flex-center svg {
+.header-icon {
   font-size: 55px;
   margin-right: 12px;
 }
 
-.learn-notes-container h1 {
+.header-title {
   font-size: 44px;
+  letter-spacing: 4px;
   margin-bottom: 0px;
   margin-top: 0;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.learn-notes-container p {
-  font-size: 18px;
-  width: 680px;
+.game-version-container {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-versions-button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 15px;
+}
+
+.game-versions-button:hover {
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 0px 0px;
+}
+
+.game-version-selected {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+  background-color: rgb(114, 255, 114);
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 15px;
+}
+
+.game-version-selected:hover {
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 0px 0px;
 }
 
 .quiz-buttons {
@@ -118,42 +199,59 @@ body {
 }
 
 .reset-button {
-  z-index: 100;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
   text-transform: uppercase;
+  color: #000;
   font-weight: 600;
-  padding: 8px 20px;
-  border-radius: 8px;
-  color: rgb(248, 248, 248);
-  background-color: rgb(29, 89, 255);
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 0px;
+  background-color: rgb(85, 255, 255);
 }
 
 .reset-button:hover {
   cursor: pointer;
-  background-color: rgb(15, 74, 236);
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 0px 0px;
 }
 
 .view-results-button {
-  font-size: 15px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
   text-transform: uppercase;
+  color: #000;
   font-weight: 600;
-  padding: 8px 20px;
-  border-radius: 8px;
-  color: black;
-  background-color: rgb(3, 255, 137);
+  background-color: rgb(114, 255, 114);
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 0px;
 }
 
 .view-results-button:hover {
   cursor: pointer;
-  background-color: rgb(0, 238, 127);
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 0px 0px;
 }
 
 .user-answered-notes {
@@ -178,7 +276,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
 }
 
 .note-image img {
@@ -198,15 +295,32 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
   height: 330px;
   width: 450px;
   background-image: url('/piano-keys.jpg');
   background-size: cover;
-  -webkit-box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 7px 7px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  border: 3px solid;
+  color: #000;
+}
+
+.what-note-header {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 85%;
+  font-family: 'Open Sans', sans-serif;
+  color: #000;
+  background-color: rgba(71, 227, 255, 0.89);
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 28px;
+  margin-bottom: 30px;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
 }
 
 .button-options-container {
@@ -215,38 +329,161 @@ body {
 }
 
 .incorrect-answer-border {
-  outline: 5px solid red;
-  border: 0px;
+  color: red;
+  border: 3px solid red;
+}
+
+.correct-answer-border {
+  color: rgb(51, 255, 51);
+  border: 3px solid rgb(51, 255, 51);
 }
 
 .button-options-container button {
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
   font-weight: 600;
-  padding: 5px 18px;
-  border-radius: 3px;
-  border: 1px solid black;
-  background-color: #424242;
-  color: rgb(71, 227, 255);
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 5px;
+  font-size: 16px;
+  background-color: rgb(71, 227, 255);
+}
+
+.score-container {
+  display: flex;
+  position: relative;
+  width: 335px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: #000;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+}
+
+.time-remaining {
+  width: 80px;
+  letter-spacing: 2px;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  margin-right: 30px;
+  padding: 6px 0;
 }
 
 .score {
+  letter-spacing: 2px;
+  font-size: 28px;
+  font-weight: 600;
   margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 6px;
-  border: 1px solid black;
+  padding: 6px 0;
 }
 
-.note-input-field-container h1 {
-  font-size: 48px;
-  padding: 0 60px;
-  margin-bottom: 20px;
-  margin-top: 0;
-  font-family: 'Pacifico', sans-serif;
-  letter-spacing: 2px;
-  color: rgb(71, 227, 255);
-  -webkit-text-stroke: 0.2px black;
+.animations-container {
+  height: 1px;
+  margin: 0;
+  position: relative;
+  width: 800px;
+}
+
+.animation-plus-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  margin-top: 30px;
+  z-index: 100;
+  font-size: 25px;
+  font-weight: 600;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding: 5px;
+  border: 3px solid;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 0;
+  animation: moveUpAndFade 2.5s ease forwards;
+}
+
+.one-minute-timer-options-container {
+  width: 300px;
+  margin-left: 66px;
+  color: #000;
+}
+
+.restart-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em 0.4em;
+  font-size: 16px;
+  border: 3px solid;
+  background-color: rgb(255, 246, 125);
+}
+
+.restart-timer:hover {
+  background-color: rgb(250, 240, 94);
+  cursor: pointer;
+}
+
+.restart-timer svg {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.restart-timer p {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.start-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em 0.4em;
+  font-size: 16px;
+  border: 3px solid;
+  border-left: 0px;
+  background-color: rgb(125, 251, 255);
+}
+
+.start-timer:hover {
+  cursor: pointer;
+  background-color: rgb(98, 243, 248);
+}
+
+.start-timer svg {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.start-timer p {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.one-minute-timer-options {
+  display: flex;
+  justify-content: end;
 }
 
 .note-input-field-container .input-button-container {
@@ -260,36 +497,50 @@ body {
 }
 
 .note-input-field-container .input-button-container button {
-  font-size: 20px;
-  text-transform: lowercase;
-  margin-left: 15px;
-  padding: 1px 16px;
-  border-radius: 6px;
-  font-family: 'Pacifico', sans-serif;
-  letter-spacing: 1px;
-  color: rgb(248, 248, 248);
-  background-color: rgb(29, 89, 255);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  background-color: rgba(9, 226, 255, 0.527);
+  font-weight: 600;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0 15px;
 }
 
 .note-input-field-container .input-button-container button:disabled {
-  color: rgb(248, 248, 248);
-  background-color: rgb(70, 70, 70);
+  background-color: rgba(236, 236, 236, 0.527);
+  border: 3px solid #000;
   cursor: not-allowed;
 }
 
-.note-input-field-container .input-button-container button:hover {
-  cursor: pointer;
-}
-
 .note-input-field-container .input-button-container input {
-  width: 65px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   font-size: 30px;
   font-weight: 500;
   text-align: center;
   border-radius: 8px;
   background-color: rgb(248, 248, 248);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+}
+
+.note-input-field-container .input-button-container input:focus {
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
 }
 
 .note-input-field-container input:focus {
@@ -300,7 +551,8 @@ body {
   font-size: 15px;
   width: 450px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 8px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Notes Modal */
@@ -312,6 +564,69 @@ body {
   width: 100%;
   height: 800px;
 }
+
+/* One Minute timer game modal css start */
+
+.one-minute-timer-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.notes-guess-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80%;
+}
+
+.how-many-notes-guess-container {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  text-align: center;
+}
+
+.how-many-notes-guess-container h2 {
+  font-size: 24px;
+}
+
+.save-leaderboards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
+
+.save-leaderboard-buttons {
+  margin-top: 20px;
+}
+
+.save-leaderboards-container p {
+  padding: 0 40px;
+}
+
+.save-to-leaderboards-button {
+  font-size: 16px;
+  background-color: rgb(114, 255, 114);
+}
+
+.dont-save-to-leaderboards-button {
+  font-size: 16px;
+  background-color: rgb(255, 149, 149);
+}
+
+/* One Minute timer game modal css end */
 
 .modal-container {
   display: flex;
@@ -363,6 +678,13 @@ body {
   margin-bottom: 20px;
 }
 
+.answers-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-selected-note-container .answers {
   display: flex;
   flex-direction: column;
@@ -374,6 +696,10 @@ body {
   border-radius: 12px;
   height: 100px;
   width: 300px;
+  border: 3px solid;
+  padding: 0.35em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
 }
 
 .modal-selected-note-container .answers .incorrect-answer {
@@ -393,6 +719,7 @@ body {
   margin-top: 15px;
   font-size: 16px;
   width: 350px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Learn Chords Page */
@@ -402,6 +729,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 100vh;
   width: 100vw;
 }
@@ -410,65 +738,51 @@ body {
   font-size: 84px;
 }
 
+/* Animations */
+@keyframes moveUpAndFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 /* Media Queries */
 @media (max-width: 970px) {
-  .score-container {
-    width: 300px;
-  }
-
   .notes-container {
-    margin-top: 85px;
+    margin-top: 15px;
   }
 
-  .learn-notes-container {
-    justify-content: start;
-    margin-top: 50px;
-  }
-
-  .learn-notes-container .flex-center svg {
+  .header-icon {
     font-size: 38px;
   }
 
-  .learn-notes-container h1 {
-    font-size: 28px;
+  .header-title {
+    font-size: 34px;
   }
 
-  .learn-notes-container p {
-    font-size: 16px;
-    width: auto;
-    padding: 0 40px;
+  .what-note-header {
+    font-size: 24px;
   }
 
   .quiz-buttons {
     width: 100%;
+    margin-bottom: 8px;
   }
 
   .reset-button {
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    color: rgb(248, 248, 248);
-    background-color: rgb(29, 89, 255);
+    font-size: 13px;
   }
 
   .view-results-button {
-    font-size: 14px;
-    height: 30px;
-    display: flex;
+    font-size: 13px;
+  }
+
+  .learn-notes-container {
     justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    color: black;
-    background-color: rgb(3, 255, 137);
+    margin-top: 35px;
   }
 
   .note-input-field-container {
@@ -477,13 +791,7 @@ body {
     margin-top: 0px;
   }
 
-  .note-input-field-container h1 {
-    font-size: 32px;
-  }
-
   .note-input-field-container .input-button-container input {
-    height: 40px;
-    width: 50px;
     font-size: 25px;
   }
 
@@ -492,7 +800,7 @@ body {
   }
 
   .note-image img {
-    height: 400px;
+    height: 510px;
   }
 
   .all-notes {
@@ -500,7 +808,7 @@ body {
   }
 
   .react-responsive-modal-modal {
-    width: 600px;
+    width: auto;
     height: 775px;
   }
 
@@ -508,6 +816,22 @@ body {
     margin-top: 10px;
     font-size: 13px;
     width: 300px;
+  }
+
+  .animations-container {
+    width: 550px;
+  }
+
+  .animation-plus-one {
+    margin-top: 26px;
+    font-size: 22px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .one-minute-timer-modal-container h1 {
+    font-size: 26px;
+    margin-top: 5px;
   }
 
   .modal-container h1 {
@@ -557,13 +881,13 @@ body {
 
   .modal-selected-note-image img {
     width: 75%;
-    margin-bottom: 0;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 700px) {
   .react-responsive-modal-modal {
-    width: 320px;
+    width: auto;
     height: 775px;
   }
 
@@ -573,45 +897,40 @@ body {
 
   .quiz-buttons {
     width: 100%;
-    margin-bottom: 5px;
-    margin-top: 15px;
+    margin-bottom: 8px;
+    margin-top: 0px;
   }
 
   .reset-button {
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    color: rgb(248, 248, 248);
-    background-color: rgb(29, 89, 255);
+    font-size: 12px;
   }
 
   .view-results-button {
-    font-size: 14px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    color: black;
-    background-color: rgb(3, 255, 137);
+    font-size: 12px;
   }
 
   .notes-container {
     flex-direction: column-reverse;
-    margin-top: 50px;
+    margin-top: 15px;
   }
 
-  .score-container {
-    width: 325px;
+  .note-input-field-container {
+    margin-top: 15px;
+  }
+
+  .learn-notes-container {
+    margin-top: 150px;
+  }
+
+  .animations-container {
+    width: 400px;
+  }
+
+  .animation-plus-one {
+    margin-top: 22px;
+    font-size: 22px;
+    height: 25px;
+    width: 25px;
   }
 
   .modal-all-notes {
@@ -676,42 +995,29 @@ body {
 
 @media (max-width: 425px) {
   .react-responsive-modal-modal {
-    width: 235px;
+    width: auto;
     height: 775px;
+  }
+
+  .what-note-header {
+    font-size: 18px;
+    width: 80%;
   }
 
   .quiz-buttons {
     width: 100%;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
     margin-top: 15px;
   }
 
   .reset-button {
     font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 8px;
-    color: rgb(248, 248, 248);
-    background-color: rgb(29, 89, 255);
   }
 
   .view-results-button {
     font-size: 12px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 8px;
-    color: black;
-    background-color: rgb(3, 255, 137);
   }
 
   .piano-game-intro h1 {
@@ -722,66 +1028,93 @@ body {
     height: 44px;
   }
 
-  .tutorial-nav div {
-    font-size: 18px;
+  .tutorial-nav {
+    margin: 12px 0;
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .tutorial-name {
+    margin: 0;
+    padding: 4px 12px;
+    font-size: 22px;
   }
 
   .tutorial-nav .tutorial-icon svg {
-    font-size: 25px;
+    display: flex;
+    font-size: 30px;
   }
 
   .piano-game-intro p {
     font-size: 16px;
   }
 
-  .learn-notes-container .flex-center svg {
-    font-size: 32px;
+  .header-icon {
+    font-size: 34px;
   }
 
   .learn-notes-container {
     margin-top: 35px;
   }
 
-  .learn-notes-container h1 {
-    font-size: 24px;
+  .animations-container {
+    width: 250px;
   }
 
-  .learn-notes-container p {
+  .animation-plus-one {
+    margin-top: 28px;
+  }
+
+  .header-title {
+    letter-spacing: 0;
+    font-size: 28px;
+  }
+
+  .score-container {
+    width: auto;
+    padding: 0px 50px;
+  }
+
+  .score {
+    font-size: 22px;
+  }
+
+  .one-minute-timer-options-container {
+    width: auto;
+    margin-right: 12px;
+  }
+
+  .restart-timer {
+    padding: 0.2em 0.3em;
+  }
+
+  .start-timer {
+    padding: 0.2em 0.3em;
+  }
+
+  .game-versions-button {
     font-size: 14px;
-    padding: 0 20px;
+  }
+
+  .game-version-selected {
+    font-size: 14px;
   }
 
   .quiz-button-note-field-container {
     margin-top: 0px;
+    margin-right: 10px;
   }
 
   .quiz-buttons {
-    width: auto;
-    gap: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-
-  .score {
-    font-size: 13px;
-  }
-
-  .score-container {
-    width: 300px;
+    width: 268px;
+    margin-top: 0px;
+    margin-bottom: 4px;
   }
 
   .note-input-field-container {
     height: 200px;
-    width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 262px;
     margin-top: 5px;
-  }
-
-  .note-input-field-container h1 {
-    font-size: 28px;
-    padding: 0 30px;
-    margin-bottom: 10px;
   }
 
   .note-input-field-container .input-button-container {
@@ -853,5 +1186,19 @@ body {
   .modal-container h1 {
     font-size: 18px;
     text-align: center;
+  }
+
+  .one-minute-timer-modal-container h1 {
+    font-size: 22px;
+    margin-top: 25px;
+  }
+
+  .how-many-notes-guess-container h2 {
+    font-size: 18px;
+  }
+
+  .save-leaderboards-container p {
+    font-size: 14px;
+    padding: 0 10px;
   }
 }
