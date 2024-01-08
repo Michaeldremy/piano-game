@@ -340,7 +340,7 @@ body {
 
 .button-options-container button {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
@@ -355,8 +355,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 0 5px;
-  font-size: 16px;
+  margin: 0 6px;
   background-color: rgb(71, 227, 255);
 }
 
@@ -1054,7 +1053,7 @@ body {
   }
 
   .learn-notes-container-margin-top {
-    margin-top: 65px;
+    margin-top: 100px;
   }
 
   .animations-container {
@@ -1153,7 +1152,7 @@ body {
     margin-top: 15px;
     margin-left: 20px;
     margin-right: 20px;
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 10px;
   }
 
